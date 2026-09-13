@@ -1,4 +1,4 @@
-import { access, copyFile, mkdir } from "node:fs/promises";
+import { access, copyFile, cp, mkdir } from "node:fs/promises";
 import { constants } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -12,10 +12,12 @@ const copies = [
   ["src/web/mobile.css", "dist/mobile.css"],
 ];
 
-const requiredAssets = [
-  "dist/art.webp",
-  "dist/sprites/character-0.png",
-  "dist/sprites/gear-0.png",
+const assetCopies = [
+  ["assets/art.webp", "dist/art.webp", "file"],
+  ["assets/sprites", "dist/sprites", "directory"],
+];
+
+const requiredRuntime = [
   "dist/vendor/laya-loader.js",
   "dist/vendor/laya.core.part-0",
   "dist/vendor/laya.core.part-1",
@@ -28,8 +30,20 @@ for (const [source, target] of copies) {
   await copyFile(from, to);
 }
 
-for (const asset of requiredAssets) {
-  await access(path.join(root, asset), constants.R_OK);
+for (const [source, target, type] of assetCopies) {
+  const from = path.join(root, source);
+  const to = path.join(root, target);
+  await access(from, constants.R_OK);
+  await mkdir(path.dirname(to), { recursive: true });
+  if (type === "directory") {
+    await cp(from, to, { recursive: true, force: true });
+  } else {
+    await copyFile(from, to);
+  }
 }
 
-console.log(`Built ${copies.length} source files into dist/.`);
+for (const file of requiredRuntime) {
+  await access(path.join(root, file), constants.R_OK);
+}
+
+console.log(`Built ${copies.length} source files and ${assetCopies.length} asset groups into dist/.`);

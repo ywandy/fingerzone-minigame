@@ -27,7 +27,8 @@ The repository now contains the editable LayaAir 2.12.1 JavaScript project, not 
 - Open the repository root in LayaAirIDE 2.x. Project metadata and launch configuration are under `.laya/`.
 - Edit gameplay in `src/game.js` and the upgrade system in `src/upgrades.js`.
 - Edit the mobile H5 shell in `src/web/`.
-- Run `npm run build` to copy source files into `dist/`, then serve `dist/` over HTTP.
+- Keep original game artwork in `assets/`; do not edit the generated copies under `dist/`.
+- Run `npm run build` to copy source files and assets into `dist/`, then serve `dist/` over HTTP.
 - Run `npm test` for the gameplay and multi-touch regression suite.
 
 ## Repository layout
@@ -35,10 +36,10 @@ The repository now contains the editable LayaAir 2.12.1 JavaScript project, not 
 - `src/game.js`: editable game configuration, simulation, LayaAir rendering, input and UI.
 - `src/upgrades.js`: editable card ranks, random offers, rerolls, derived modifiers and combat effects.
 - `src/web/`: editable preparation screen, portrait HUD and responsive styles.
-- `tools/build.mjs`: dependency-free source-to-`dist/` build script.
-- `dist/`: browser-ready H5 build output.
-- `dist/sprites/`: generated character, portrait and weapon textures.
-- `dist/art.webp`: generated preparation-screen key art.
+- `assets/art.webp`: original generated preparation-screen key art.
+- `assets/sprites/`: original generated character, portrait and weapon textures.
+- `tools/build.mjs`: dependency-free source-and-asset build script.
+- `dist/`: browser-ready H5 build output; its artwork is copied from `assets/`.
 - `dist/vendor/laya-loader.js` and `laya.core.part-*`: official Layabox demo distribution, LayaAir 2.12.1beta; split for repository transport and reassembled in the browser.
   Source: https://github.com/layabox/layaair-demo/blob/master/h5/libs/laya.core.js
 - `dist/vendor/LICENSE-LayaAir`: LayaAir MIT license.
