@@ -1,0 +1,13 @@
+{
+  "name": "fingerzone-minigame",
+  "version": "1.0.0",
+  "private": true,
+  "description": "《指尖僵尸》LayaAir 2.12.1 竖版 2.5D 生存射击游戏",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "node tests/game-regression.cjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

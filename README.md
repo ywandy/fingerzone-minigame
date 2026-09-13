@@ -20,14 +20,26 @@ Serve `dist/` with any static web server (e.g. `python3 -m http.server --directo
 
 3 survivors and individual skills; 4 firearms; 3 melee weapons; 4 regular enemy types and final boss; 10 timed waves; 12 ranked upgrade cards; generated character/weapon/key-art assets; procedural sound effects; pause, retry, and character selection.
 
-## Source
+## LayaAir source project
 
-- `dist/game.js`: game configuration, simulation, LayaAir rendering, input and UI.
-- `dist/upgrades.js`: bounded card ranks, random offers, rerolls, derived modifiers and combat effects.
-- `dist/style.css` / `dist/mobile.css` / `dist/index.html`: responsive preparation screen and portrait HUD.
+The repository now contains the editable LayaAir 2.12.1 JavaScript project, not only the published H5 files.
+
+- Open the repository root in LayaAirIDE 2.x. Project metadata and launch configuration are under `.laya/`.
+- Edit gameplay in `src/game.js` and the upgrade system in `src/upgrades.js`.
+- Edit the mobile H5 shell in `src/web/`.
+- Run `npm run build` to copy source files into `dist/`, then serve `dist/` over HTTP.
+- Run `npm test` for the gameplay and multi-touch regression suite.
+
+## Repository layout
+
+- `src/game.js`: editable game configuration, simulation, LayaAir rendering, input and UI.
+- `src/upgrades.js`: editable card ranks, random offers, rerolls, derived modifiers and combat effects.
+- `src/web/`: editable preparation screen, portrait HUD and responsive styles.
+- `tools/build.mjs`: dependency-free source-to-`dist/` build script.
+- `dist/`: browser-ready H5 build output.
 - `dist/sprites/`: generated character, portrait and weapon textures.
 - `dist/art.webp`: generated preparation-screen key art.
-- `dist/vendor/laya.core.js`: official Layabox demo distribution, LayaAir 2.12.1beta; includes WebGL.
+- `dist/vendor/laya-loader.js` and `laya.core.part-*`: official Layabox demo distribution, LayaAir 2.12.1beta; split for repository transport and reassembled in the browser.
   Source: https://github.com/layabox/layaair-demo/blob/master/h5/libs/laya.core.js
 - `dist/vendor/LICENSE-LayaAir`: LayaAir MIT license.
 

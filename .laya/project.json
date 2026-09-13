@@ -1,0 +1,9 @@
+{
+  "name": "fingerzone-minigame",
+  "displayName": "指尖僵尸",
+  "engineVersion": "2.12.1beta",
+  "language": "javascript",
+  "orientation": "portrait",
+  "sourceDir": "src",
+  "outputDir": "dist"
+}
